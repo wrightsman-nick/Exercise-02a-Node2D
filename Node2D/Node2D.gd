@@ -7,20 +7,29 @@ var scale_steps = 0
 
 onready var global = get_node("/root/Global")
 
-func translating(px,py,amount):
-	pass
+func translating(px,py,amount): 
+	position.x = sin(px)*amount 
+	position.y = sin(py)*amount
 
+# warning-ignore:unused_argument
 func rotating(rad):
-	pass
+	rotation = sin(rot_steps)
 	
+# warning-ignore:unused_argument
 func scaling(amount):
-	pass
+	scale.x = sin(amount) + 1.1
+	scale.y = sin(amount) + 1.1
 
 
+# warning-ignore:unused_argument
 func _physics_process(delta):
 	if global.won:
 		return
 	translating(posx_steps,posy_steps,600)
 	rotating(rot_steps)
 	scaling(scale_steps)
+	posx_steps += 0.007
+	posy_steps += 0.011
+	scale_steps += 0.003
+	rot_steps += 0.005
 
